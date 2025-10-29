@@ -1,116 +1,146 @@
-# ⚛️ Fizik Premium - Çembersel Hareket ve Dönme Dinamiği PWA
+# Fizik Premium - PWA
 
-Modern, offline çalışabilen Fizik sınavı hazırlık Progressive Web App'i.
+Modern, offline çalışabilen fizik sınavı hazırlık uygulaması.
 
-## 🎯 Özellikler
+## Canlı Demo
 
-### 📚 6 Ana Konu
-1. **Düzgün Çembersel Hareket** - Periyot, frekans, çizgisel hız, açısal hız, merkezcil ivme ve kuvvet
-2. **Viraj Dönüş Şartları** - Yatay, eğimli, düşey düzlemde dönme, silindir içi, konik sarkaç
-3. **Dönme Kinetik Enerjisi** - Eylemsizlik momenti, dönme ve öteleme enerjisi
-4. **Açısal Momentum** - Açısal momentum korunumu, döner sandalye örneği
-5. **Kütle Çekim Potansiyel Enerjisi** - Evrensel çekim kuvveti, çekim alanı
-6. **Kepler Kanunları** - 3 temel kanun (Yörüngeler, Alanlar, Periyotlar)
+**[https://newmekintos.github.io/fizik-pwa/](https://newmekintos.github.io/fizik-pwa/)**
 
-### ✨ Quiz Sistemi
-- Her konu için 4 soru
-- Toplam 24 quiz sorusu
-- Anında feedback ve açıklamalar
-- Skor takibi (%80+ Mükemmel)
+## Konular
 
-### 🎨 Tema Desteği
-- **Light Mode** - Mavi vurgular, beyaz arkaplan
-- **Dark Mode** - Koyu tema, göz dostu
-- Otomatik tema kaydetme
+1. **Düzgün Çembersel Hareket**
+   - Periyot ve Frekans
+   - Çizgisel Hız
+   - Açısal Hız
+   - Merkezcil İvme ve Kuvvet
 
-### 📱 PWA Özellikleri
-- ✅ Offline çalışma (Service Worker)
-- ✅ Ana ekrana eklenebilir
-- ✅ Responsive tasarım (Mobile/Tablet/Desktop)
-- ✅ İlerleme takibi
-- ✅ LocalStorage ile kayıt
+2. **Viraj Dönüş Şartları**
+   - Yatay Virajda Dönme
+   - Eğimli Virajda Dönme
+   - Düşey Düzlemde Çembersel Hareket
+   - Silindir İçinde Dönen Cisimler
+   - Konik Sarkaç
 
-## 🚀 Kurulum ve Çalıştırma
+3. **Dönme Kinetik Enerjisi**
+   - Dönerek Öteleme Hareketi
+   - Eylemsizlik Momenti
+   - Dönme Kinetik Enerjisi Formülü
 
-### Yerel Sunucu ile Test
+4. **Açısal Momentum**
+   - Açısal Momentum Tanımı
+   - Açısal Momentum Korunumu
+   - Döner Sandalye Örneği
+
+5. **Kütle Çekim Potansiyel Enerjisi**
+   - Evrensel Çekim Kuvveti
+   - Kütle Çekim Alanı
+   - Yer Çekim İvmesi
+
+6. **Kepler Kanunları**
+   - Yörüngeler Kanunu
+   - Alanlar Kanunu
+   - Periyotlar Kanunu
+
+## Özellikler
+
+- **Progressive Web App** - Offline çalışma desteği
+- **Dark/Light Tema** - Göz dostu tasarım
+- **Responsive** - Mobil, tablet, desktop uyumlu
+- **Quiz Sistemi** - Her konu için test soruları (randomize şıklar)
+- **Modern UI/UX** - Temiz ve kullanıcı dostu arayüz
+- **İlerleme Takibi** - localStorage ile kayıt
+- **PWA Install** - Ana ekrana ekleme desteği
+- **Kapsamlı İçerik** - Tüm formüller ve açıklamalar
+- **Sembol Açıklamaları** - Her matematiksel sembol açıklanmış
+
+## Kurulum
+
+### Yerel Geliştirme
 
 ```bash
-# Python 3 ile
-python3 -m http.server 8000
+# Projeyi klonla
+git clone https://github.com/newmekintos/fizik-pwa.git
+cd fizik-pwa
 
-# Node.js ile (npx)
-npx http-server -p 8000
+# Basit HTTP sunucusu başlat
+python3 -m http.server 8080
 
-# PHP ile
-php -S localhost:8000
+# Tarayıcıda aç
+# http://localhost:8080
 ```
 
-Tarayıcıda: `http://localhost:8000`
+### PWA Olarak Kullanım
 
-## 📂 Dosya Yapısı
+1. [Canlı siteyi](https://newmekintos.github.io/fizik-pwa/) ziyaret et
+2. Sağ alttaki " Yükle" butonuna tıkla
+3. Uygulamayı ana ekrana ekle
+4. Offline kullan
+
+## Dosya Yapısı
 
 ```
 fizik-pwa/
 ├── index.html          # Ana sayfa
-├── manifest.json       # PWA metadata
-├── sw.js              # Service Worker
-├── styles.css         # Stiller (responsive + tema)
-├── script.js          # JavaScript logic
-├── content.js         # 6 konu içeriği
+├── styles.css          # CSS stilleri (kırmızı tema)
+├── script.js           # JavaScript mantığı
+├── content.js          # Konu içerikleri (470+ satır)
+├── sw.js              # Service Worker (v1.0)
+├── manifest.json      # PWA manifest
 ├── .gitignore         # Git ignore
 └── README.md          # Bu dosya
 ```
 
-## 🛠️ Teknolojiler
+## Teknolojiler
 
 - **HTML5** - Semantic markup
-- **CSS3** - Variables, Grid, Flexbox, Responsive
-- **Vanilla JavaScript** - ES6+, 0 dependency
-- **Service Worker** - Offline support
-- **LocalStorage** - Progress tracking
+- **CSS3** - Modern styling, CSS Grid, Flexbox, CSS Variables
+- **JavaScript (ES6+)** - Vanilla JS, no dependencies
+- **Service Worker** - Offline support, cache-first strategy
+- **LocalStorage** - Veri saklama
+- **PWA** - Progressive Web App özellikleri
 
-## 📱 Responsive Breakpoints
+## Tema Renkleri
 
-- **Mobile:** < 768px (Hamburger menü)
-- **Tablet:** 768px - 1024px
-- **Desktop:** > 1024px
+**Light Tema:**
+- Primary: #e63946 (kırmızı)
+- Secondary: #457b9d (mavi)
+- Accent: #f77f00 (turuncu)
 
-## 💾 LocalStorage Kullanımı
+**Dark Tema:**
+- Background: #0d1117 (koyu)
+- Text: #f0f6fc (açık)
 
-- `theme` - Tema tercihi (light/dark)
-- `currentSection` - Son görüntülenen bölüm
-- `visitedSections` - Tamamlanan konular (array)
+## Tarayıcı Desteği
 
-## 🎓 Kullanım
+- **Chrome/Edge (Önerilen)**
+- **Firefox**
+- **Safari**
+- **Opera**
+- **Samsung Internet**
 
-1. İstediğin konuya sidebar'dan tıkla
-2. Konu içeriğini oku
-3. "Bu Konuyu Test Et" butonuna tıkla
-4. Quiz sorularını çöz
-5. İlerleme çubuğunu takip et
+## 📊 İstatistikler
 
-## 🌙 Tema Değiştirme
+- **6** Ana Konu
+- **24** Quiz Sorusu
+- **470+** Satır İçerik
+- **0** Dependency
+- **Offline** Çalışma Desteği
 
-Sağ üst köşedeki güneş/ay ikonuna tıklayarak tema değiştirilebilir.
+## 📄 Lisans
 
-## 📊 İlerleme Takibi
+MIT License - Eğitim amaçlı kullanım için tasarlanmıştır.
 
-- Her ziyaret edilen konu otomatik kaydedilir
-- Sol sidebar'da ilerleme çubuğu gösterilir
-- 6 konudan kaçını tamamladığını görebilirsin
+## 👤 Geliştirici
 
-## 🏆 Quiz Puanlama
+**newmekintos**
+- GitHub: [@newmekintos](https://github.com/newmekintos)
 
-- Her doğru cevap: +1 puan
-- %80 ve üzeri: Mükemmel 🌟
-- %60-79: İyi çalışma ✨
-- %40-59: Fena değil 📚
-- %0-39: Daha çok çalış 💡
+## 🔗 İlgili Projeler
 
-## 📜 Lisans
+- [İnkılap Tarihi PWA](https://github.com/newmekintos/inkilap-tarihi-pwa) - 12. Sınıf İnkılap Tarihi
 
-MIT License - Eğitim amaçlı kullanım için serbesttir.
+---
 
-## 💪 Başarılar!
+⭐ **Beğendiyseniz yıldız vermeyi unutmayın!**
 
-Fizik sınavında başarılar dileriz! 🎯
+📱 **[Şimdi Deneyin →](https://newmekintos.github.io/fizik-pwa/)**
