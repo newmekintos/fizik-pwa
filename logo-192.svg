@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <!-- Background Circle -->
+  <circle cx="96" cy="96" r="91" fill="#e63946"/>
+  
+  <!-- Orbiting Circles (Electron Paths) -->
+  <g opacity="0.3">
+    <ellipse cx="96" cy="96" rx="67" ry="24" fill="none" stroke="white" stroke-width="2" transform="rotate(30 96 96)"/>
+    <ellipse cx="96" cy="96" rx="67" ry="24" fill="none" stroke="white" stroke-width="2" transform="rotate(90 96 96)"/>
+    <ellipse cx="96" cy="96" rx="67" ry="24" fill="none" stroke="white" stroke-width="2" transform="rotate(150 96 96)"/>
+  </g>
+  
+  <!-- Central Nucleus -->
+  <circle cx="96" cy="96" r="34" fill="#457b9d"/>
+  
+  <!-- Letter F -->
+  <text x="96" y="120" font-size="52" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">F</text>
+  
+  <!-- Orbiting Particles (Electrons) -->
+  <circle cx="163" cy="96" r="6" fill="#f77f00"/>
+  <circle cx="96" cy="72" r="6" fill="white"/>
+  <circle cx="29" cy="96" r="6" fill="#06d6a0"/>
+</svg>

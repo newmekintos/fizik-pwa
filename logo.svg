@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#e63946"/>
+  
+  <!-- Orbiting Circles (Electron Paths) -->
+  <g opacity="0.3">
+    <ellipse cx="100" cy="100" rx="70" ry="25" fill="none" stroke="white" stroke-width="2" transform="rotate(30 100 100)"/>
+    <ellipse cx="100" cy="100" rx="70" ry="25" fill="none" stroke="white" stroke-width="2" transform="rotate(90 100 100)"/>
+    <ellipse cx="100" cy="100" rx="70" ry="25" fill="none" stroke="white" stroke-width="2" transform="rotate(150 100 100)"/>
+  </g>
+  
+  <!-- Central Nucleus -->
+  <circle cx="100" cy="100" r="35" fill="#457b9d"/>
+  
+  <!-- Letter F -->
+  <text x="100" y="125" font-size="55" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial, sans-serif">F</text>
+  
+  <!-- Orbiting Particles (Electrons) -->
+  <circle cx="170" cy="100" r="6" fill="#f77f00">
+    <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="100" cy="75" r="6" fill="white">
+    <animateTransform attributeName="transform" type="rotate" from="120 100 100" to="480 100 100" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="30" cy="100" r="6" fill="#06d6a0">
+    <animateTransform attributeName="transform" type="rotate" from="240 100 100" to="600 100 100" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>
