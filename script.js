@@ -1,59 +1,94 @@
-// Theme Management
-const themeToggle = document.getElementById('themeToggle');
-const html = document.documentElement;
-const currentTheme = localStorage.getItem('theme') || 'light';
-html.setAttribute('data-theme', currentTheme);
-
-themeToggle.addEventListener('click', () => {
-    const theme = html.getAttribute('data-theme');
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-});
-
-// PWA Install
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (!window.matchMedia('(display-mode: standalone)').matches) {
-        installBtn.style.display = 'block';
+// ==================== THEME SYSTEM ====================
+// Detect system theme preference
+function detectSystemTheme() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
     }
-});
+    return 'light';
+}
 
-installBtn.addEventListener('click', async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') installBtn.style.display = 'none';
-    deferredPrompt = null;
-});
+// Initialize theme IMMEDIATELY using data-theme attribute
+(function() {
+    const savedTheme = localStorage.getItem('theme');
+    const html = document.documentElement;
+    
+    if (savedTheme) {
+        html.setAttribute('data-theme', savedTheme);
+    } else {
+        // Use system preference only if no saved theme
+        const systemTheme = detectSystemTheme();
+        html.setAttribute('data-theme', systemTheme);
+    }
+})();
 
-// Mobile Menu
-const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-const sidebar = document.getElementById('sidebar');
-
-mobileMenuToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-    mobileMenuToggle.classList.toggle('active');
-});
-
-document.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-        if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-            sidebar.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
+// Listen for system theme changes (only if no manual preference saved)
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
         }
+    });
+}
+
+// ==================== THEME TOGGLE ====================
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
     }
-});
 
-// Navigation
-const navLinks = document.querySelectorAll('.nav-link');
-const contentSections = document.querySelectorAll('.content-section');
+    // PWA Install
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
 
-window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if (!window.matchMedia('(display-mode: standalone)').matches) {
+            installBtn.style.display = 'flex';
+        }
+    });
+
+    installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') installBtn.style.display = 'none';
+        deferredPrompt = null;
+    });
+
+    // Mobile Menu
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    mobileMenuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+            if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+            }
+        }
+    });
+
+    // Navigation
+    const navLinks = document.querySelectorAll('.nav-link');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    // Load content
     if (typeof contentData !== 'undefined') {
         Object.keys(contentData).forEach(key => {
             const section = document.getElementById(key);
@@ -64,32 +99,32 @@ window.addEventListener('DOMContentLoaded', () => {
     updateProgress();
     const lastSection = localStorage.getItem('currentSection') || 'duzgun-cembersel';
     showSection(lastSection);
-});
 
-function showSection(sectionId) {
-    contentSections.forEach(section => section.classList.remove('active'));
-    navLinks.forEach(link => link.classList.remove('active'));
-    
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) targetSection.classList.add('active');
-    
-    const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
-    if (activeLink) activeLink.classList.add('active');
-    
-    localStorage.setItem('currentSection', sectionId);
-    markSectionVisited(sectionId);
-    
-    if (window.innerWidth <= 768) {
-        sidebar.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
+    function showSection(sectionId) {
+        contentSections.forEach(section => section.classList.remove('active'));
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) targetSection.classList.add('active');
+        
+        const activeLink = document.querySelector(`[data-section="${sectionId}"]`);
+        if (activeLink) activeLink.classList.add('active');
+        
+        localStorage.setItem('currentSection', sectionId);
+        markSectionVisited(sectionId);
+        
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection(link.getAttribute('data-section'));
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            showSection(link.getAttribute('data-section'));
+        });
     });
 });
 
