@@ -1,32 +1,17 @@
 // ==================== THEME SYSTEM ====================
-// Detect system theme preference
-function detectSystemTheme() {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-    }
-    return 'light';
-}
-
-// Initialize theme IMMEDIATELY using data-theme attribute
-(function() {
-    const savedTheme = localStorage.getItem('theme');
-    const html = document.documentElement;
-    
-    if (savedTheme) {
-        html.setAttribute('data-theme', savedTheme);
-    } else {
-        // Use system preference only if no saved theme
-        const systemTheme = detectSystemTheme();
-        html.setAttribute('data-theme', systemTheme);
-    }
-})();
-
 // Listen for system theme changes (only if no manual preference saved)
 if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
             const html = document.documentElement;
-            html.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            const newTheme = e.matches ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            
+            // Update theme-color meta tag
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.setAttribute('content', newTheme === 'dark' ? '#0d1117' : '#e63946');
+            }
         }
     });
 }
@@ -43,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            
+            // Update theme-color meta tag for mobile browsers
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.setAttribute('content', newTheme === 'dark' ? '#0d1117' : '#e63946');
+            }
         });
     }
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Fizik Sınavı Hazırlık Platformu - Düzgün Çembersel Hareket ve Dönme Dinamiği">
-    <meta name="theme-color" content="#1e3a8a">
+    <meta name="theme-color" content="#e63946" id="theme-color-meta">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
@@ -15,6 +15,34 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231e3a8a'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial'>F</text></svg>">
+    
+    <!-- Theme Detection - MUST run before styles to prevent FOUC -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.documentElement;
+            let theme;
+            
+            if (savedTheme) {
+                theme = savedTheme;
+            } else {
+                // Detect system theme
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    theme = 'dark';
+                } else {
+                    theme = 'light';
+                }
+            }
+            
+            html.setAttribute('data-theme', theme);
+            
+            // Update theme-color meta tag for mobile browsers
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.setAttribute('content', theme === 'dark' ? '#0d1117' : '#e63946');
+            }
+        })();
+    </script>
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
