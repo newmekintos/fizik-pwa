@@ -2,12 +2,12 @@ const CACHE_VERSION = 'v1.0';
 const CACHE_NAME = `fizik-pwa-${CACHE_VERSION}`;
 
 const urlsToCache = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/script.js',
-    '/content.js',
-    '/manifest.json'
+    './',
+    './index.html',
+    './styles.css',
+    './script.js',
+    './content.js',
+    './manifest.json'
 ];
 
 // Install event - cache files
