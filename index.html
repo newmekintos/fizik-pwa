@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fizik Sınavı Hazırlık Platformu - Düzgün Çembersel Hareket ve Dönme Dinamiği">
+    <meta name="theme-color" content="#1e3a8a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <title>Fizik Premium - Çembersel Hareket ve Dönme Dinamiği</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%231e3a8a'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial'>F</text></svg>">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Tema Değiştir">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
+
+    <!-- Mobile Menu Toggle -->
+    <button id="mobileMenuToggle" class="mobile-menu-toggle" aria-label="Menüyü Aç/Kapat">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- PWA Install Button -->
+    <button id="installBtn" class="install-btn" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Yükle
+    </button>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="logo">⚛️ Fizik Premium</h1>
+                <p class="subtitle">Çembersel Hareket & Dönme Dinamiği</p>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker">
+                <div class="progress-header">
+                    <span>İlerleme</span>
+                    <span id="progressText">0/6</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav">
+                <a href="#duzgun-cembersel" class="nav-link active" data-section="duzgun-cembersel">
+                    <span class="nav-icon">🔄</span>
+                    <span>Düzgün Çembersel Hareket</span>
+                </a>
+                <a href="#viraj" class="nav-link" data-section="viraj">
+                    <span class="nav-icon">🏎️</span>
+                    <span>Viraj Dönüş Şartları</span>
+                </a>
+                <a href="#donme-kinetik" class="nav-link" data-section="donme-kinetik">
+                    <span class="nav-icon">⚡</span>
+                    <span>Dönme Kinetik Enerjisi</span>
+                </a>
+                <a href="#acisal-momentum" class="nav-link" data-section="acisal-momentum">
+                    <span class="nav-icon">🔁</span>
+                    <span>Açısal Momentum</span>
+                </a>
+                <a href="#kutle-cekim" class="nav-link" data-section="kutle-cekim">
+                    <span class="nav-icon">🌍</span>
+                    <span>Kütle Çekim Potansiyel</span>
+                </a>
+                <a href="#kepler" class="nav-link" data-section="kepler">
+                    <span class="nav-icon">🪐</span>
+                    <span>Kepler Kanunları</span>
+                </a>
+            </nav>
+
+            <!-- Footer Info -->
+            <div class="sidebar-footer">
+                <p>💪 Başarılar Dileriz!</p>
+                <p class="version">v1.0.0</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h2 class="hero-title">Fizik Sınavına Hazır mısın? 🎯</h2>
+                <p class="hero-description">
+                    Düzgün çembersel hareket, viraj dönüş şartları, dönme kinetik enerjisi, 
+                    açısal momentum korunumu, kütle çekim potansiyel enerjisi ve Kepler Kanunları 
+                    konularında uzmanlaş!
+                </p>
+            </section>
+
+            <!-- Content Sections -->
+            <section id="duzgun-cembersel" class="content-section active">
+                <!-- Content will be loaded from content.js -->
+            </section>
+
+            <section id="viraj" class="content-section">
+                <!-- Content will be loaded from content.js -->
+            </section>
+
+            <section id="donme-kinetik" class="content-section">
+                <!-- Content will be loaded from content.js -->
+            </section>
+
+            <section id="acisal-momentum" class="content-section">
+                <!-- Content will be loaded from content.js -->
+            </section>
+
+            <section id="kutle-cekim" class="content-section">
+                <!-- Content will be loaded from content.js -->
+            </section>
+
+            <section id="kepler" class="content-section">
+                <!-- Content will be loaded from content.js -->
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="content.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('✅ Service Worker kayıtlı:', reg.scope))
+                    .catch(err => console.log('❌ Service Worker hatası:', err));
+            });
+        }
+    </script>
+</body>
+</html>
